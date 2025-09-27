@@ -10,7 +10,7 @@ import java.util.UUID;
 // Aggregate
 public class Product
 {
-    private UUID id;
+    private UUID id; // Bu özel bi yapı mı? Yoksa sadece değer mi?
     private String name;
     private String description;
     private Money money;
