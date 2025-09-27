@@ -51,7 +51,7 @@ public class Product
             throw new IllegalArgumentException("Quantity to dispatch must be positive.");
         if(this.stock < quantityToDispatch)
             throw new IllegalArgumentException("Insufficient stock.");
-        this.stock -= stock;
+        this.stock -= quantityToDispatch;
     }
 
     public void restock(Integer quantityToRestock)
