@@ -17,7 +17,7 @@ public class Product
     private Money money;
     private Integer stock; // Integer -> Nesne, int (primitive type)
 
-    // Kontrollü Yaratım -> Ctor'ı private yapıyoruz
+    // Kontrollü Üretim -> Ctor'ı private yapıyoruz
     // Bu nesne yalnızca benim vereceğim fabrika metotları ile oluşturulsun.
     private Product(ProductId id, String name, String description, Money money, Integer stock) {
         this.id = id;
@@ -26,6 +26,7 @@ public class Product
         this.money = money;
         this.stock = stock;
     }
+    // Static Factory Method (idiom)
     public static Product create(String name, String description, Money money, Integer stock)
     {
         validateName(name);
@@ -35,26 +36,37 @@ public class Product
 
         return new Product(ProductId.generate(), name, description, money, stock);
     }
-    public void setName(String name)
+
+    // İş yapan methodlar.
+    public void rename(String name)
     {
         validateName(name);
         this.name = name;
     }
-    public void setMoney(Money money)
+    // Setter => Değer override etmek
+    // Worker => İşlem sonucu değerleri değiştiren.
+    public void dispatch(Integer quantityToDispatch)
     {
-        Objects.requireNonNull(money, "Money cannot be null");
-        this.money = money;
+        if(quantityToDispatch == null || quantityToDispatch <= 0)
+            throw new IllegalArgumentException("Quantity to dispatch must be positive.");
+        if(this.stock < quantityToDispatch)
+            throw new IllegalArgumentException("Insufficient stock.");
+        this.stock -= stock;
     }
-    public void setDescription(String description)
+
+    public void restock(Integer quantityToRestock)
     {
-        validateDescription(description);
-        this.description = description;
+        if (quantityToRestock == null || quantityToRestock <= 0)
+            throw new IllegalArgumentException("Quantity to dispatch must be positive.");
+        this.stock += quantityToRestock;
     }
-    public void setStock(Integer stock)
+
+    public void changePrice(Money newPrice)
     {
-        validateStock(stock);
-        this.stock = stock;
+        Objects.requireNonNull(newPrice, "Price cannot be null");
+        this.money = newPrice;
     }
+
     private static void validateStock(Integer stock)
     {
         if (stock == null || stock <= 0)
