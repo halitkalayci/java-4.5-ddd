@@ -13,9 +13,12 @@ public class Main {
                 new Money(BigDecimal.valueOf(300), "TRY"),
                 100
         );
-        product.setName("Ürün 2");
+        product.rename("Ürün 2");
         System.out.println(product.name());
 
         // stok düşme... getstok-quantity -> setStock()
     }
 }
+
+// Bireysel Ödev => Domain Driven Design hakkında 3+ sayfalık bol örnekli bir yazı oluşturmanız
+// .pdf yapıp yüklemeniz.
