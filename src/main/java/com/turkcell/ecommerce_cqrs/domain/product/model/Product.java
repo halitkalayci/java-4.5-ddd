@@ -1,9 +1,6 @@
-package com.turkcell.ecommerce_cqrs.domain;
+package com.turkcell.ecommerce_cqrs.domain.product.model;
 
-import java.math.BigDecimal;
-import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 // Domain Object
 // Saf Java.

@@ -1,7 +1,7 @@
 package com.turkcell.ecommerce_cqrs;
 
-import com.turkcell.ecommerce_cqrs.domain.Money;
-import com.turkcell.ecommerce_cqrs.domain.Product;
+import com.turkcell.ecommerce_cqrs.domain.product.model.Money;
+import com.turkcell.ecommerce_cqrs.domain.product.model.Product;
 
 import java.math.BigDecimal;
 
