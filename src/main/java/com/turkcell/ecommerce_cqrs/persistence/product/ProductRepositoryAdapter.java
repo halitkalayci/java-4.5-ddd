@@ -22,22 +22,28 @@ public class ProductRepositoryAdapter implements ProductRepository
     @Override
     public Product save(Product product) {
         JpaProductEntity entity = productEntityMapper.toEntity(product);
-        entity = this.repository.save(entity);
+        entity = repository.save(entity);
         return productEntityMapper.toDomain(entity);
     }
 
     @Override
     public Optional<Product> findById(ProductId productId) {
-        return Optional.empty();
+        return repository
+                .findById(productId.value())
+                .map(productEntityMapper::toDomain);
     }
 
     @Override
     public List<Product> findAll() {
-        return List.of();
+        return repository
+                .findAll()
+                .stream()
+                .map(productEntityMapper::toDomain) // Method Reference
+                .toList();
     }
 
     @Override
     public void delete(ProductId productId) {
-
+        repository.deleteById(productId.value());
     }
 }
