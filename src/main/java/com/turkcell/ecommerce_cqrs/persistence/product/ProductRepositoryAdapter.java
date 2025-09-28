@@ -3,6 +3,8 @@ package com.turkcell.ecommerce_cqrs.persistence.product;
 import com.turkcell.ecommerce_cqrs.domain.product.model.Product;
 import com.turkcell.ecommerce_cqrs.domain.product.model.ProductId;
 import com.turkcell.ecommerce_cqrs.domain.product.repository.ProductRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -39,6 +41,15 @@ public class ProductRepositoryAdapter implements ProductRepository
                 .findAll()
                 .stream()
                 .map(productEntityMapper::toDomain) // Method Reference
+                .toList();
+    }
+
+    @Override
+    public List<Product> findAllPaged(Integer pageIndex, Integer pageSize) {
+        return repository
+                .findAll(PageRequest.of(pageIndex, pageSize))
+                .stream()
+                .map(productEntityMapper::toDomain)
                 .toList();
     }
 

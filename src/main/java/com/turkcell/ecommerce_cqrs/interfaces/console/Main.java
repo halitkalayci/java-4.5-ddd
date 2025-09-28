@@ -1,4 +1,4 @@
-package com.turkcell.ecommerce_cqrs;
+package com.turkcell.ecommerce_cqrs.interfaces.console;
 
 import com.turkcell.ecommerce_cqrs.domain.product.model.Money;
 import com.turkcell.ecommerce_cqrs.domain.product.model.Product;
@@ -15,6 +15,8 @@ public class Main {
         );
         product.rename("Ürün 2");
         System.out.println(product.name());
+
+
 
         // stok düşme... getstok-quantity -> setStock()
     }
