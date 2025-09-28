@@ -34,6 +34,12 @@ public class Product
         return new Product(ProductId.generate(), name, description, money, stock);
     }
 
+    // Rehydrate method -> persist edilmiş veriyi geri yüklemek
+    public static Product rehydrate(ProductId id, String name, String description, Money money, Integer stock)
+    {
+        return new Product(id, name, description, money, stock);
+    }
+
     // İş yapan methodlar.
     public void rename(String name)
     {
@@ -71,17 +77,18 @@ public class Product
     }
     private static void validateDescription(String description)
     {
-        if(description == null || description.length() < 3)
-            throw new IllegalArgumentException("Description must be at least 3 characters");
-        if(description.length() > 255)
+        if(description == null || description.isEmpty())
+            throw new IllegalArgumentException("Description cannot be null or empty");
+        if(description.length() >= 255)
             throw new IllegalArgumentException("Description length must be less than 255 characters");
     }
     private static void validateName(String name)
     {
         if(name == null || name.isEmpty())
             throw new IllegalArgumentException("Name cannot be null or empty");
-        if(name.length() < 3)
-            throw new IllegalArgumentException("Name must be at least 3 characters");
+
+        if(name.length() >= 255)
+            throw new IllegalArgumentException("Name length must be less than 255 characters");
     }
 
     public ProductId id() {
