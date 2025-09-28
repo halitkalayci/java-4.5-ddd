@@ -29,3 +29,4 @@ public class ListProductsQueryHandler implements QueryHandler<ListProductsQuery,
                 .toList();
     }
 }
+
