@@ -11,3 +11,4 @@ public class ListProductsQueryHandler implements QueryHandler<ListProductsQuery,
         return List.of();
     }
 }
+// Product için yapılan tüm işlemleri domain-persistence-application (içi boş) için oluşturunuz.
