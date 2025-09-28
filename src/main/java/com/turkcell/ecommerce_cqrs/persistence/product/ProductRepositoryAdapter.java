@@ -1,4 +1,4 @@
-package com.turkcell.ecommerce_cqrs.infrastructure.product;
+package com.turkcell.ecommerce_cqrs.persistence.product;
 
 import com.turkcell.ecommerce_cqrs.domain.product.model.Product;
 import com.turkcell.ecommerce_cqrs.domain.product.model.ProductId;
@@ -12,17 +12,18 @@ import java.util.Optional;
 public class ProductRepositoryAdapter implements ProductRepository
 {
     private final SpringDataProductRepository repository;
+    private final ProductEntityMapper productEntityMapper;
 
-    public ProductRepositoryAdapter(SpringDataProductRepository repository) {
+    public ProductRepositoryAdapter(SpringDataProductRepository repository, ProductEntityMapper productEntityMapper) {
         this.repository = repository;
+        this.productEntityMapper = productEntityMapper;
     }
 
     @Override
     public Product save(Product product) {
-        // Product-JpaProductEntity mapping.
-        // Veritabanına kaydet
-        // Kaydedilen yapıyı Producta geri maple return.
-        return null;
+        JpaProductEntity entity = productEntityMapper.toEntity(product);
+        entity = this.repository.save(entity);
+        return productEntityMapper.toDomain(entity);
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.turkcell.ecommerce_cqrs.infrastructure.product;
+package com.turkcell.ecommerce_cqrs.persistence.product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
