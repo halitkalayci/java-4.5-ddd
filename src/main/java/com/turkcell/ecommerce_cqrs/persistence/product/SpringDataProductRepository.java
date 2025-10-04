@@ -6,4 +6,5 @@ import java.util.UUID;
 
 public interface SpringDataProductRepository extends JpaRepository<JpaProductEntity, UUID>
 {
+    boolean existsByNameIgnoreCase(String name);
 }

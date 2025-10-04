@@ -57,4 +57,9 @@ public class ProductRepositoryAdapter implements ProductRepository
     public void delete(ProductId productId) {
         repository.deleteById(productId.value());
     }
+
+    @Override
+    public boolean existsByNameIgnoreCase(String name) {
+        return repository.existsByNameIgnoreCase(name);
+    }
 }

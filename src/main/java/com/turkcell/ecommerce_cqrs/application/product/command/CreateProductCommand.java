@@ -16,3 +16,7 @@ public record CreateProductCommand(
         @NotBlank @Size(min=2,max = 255) String currency,
         @Min(0) Integer stock
 ) implements Command<CreatedProductResponse> { }
+
+// Bir önceki mimari ile geliştirdiğiniz "Kütüphane Yönetim Sistemini"
+// DDD-Cqrs-Onion Arch. ile tekrar geliştiriniz. (İş kurallarını araştıralım)
+// (İş kuralları-jwt hariç -> değerlendirme)
